@@ -1,24 +1,7 @@
 pipeline {
     agent any
-    // parameters{
-    //     string(defaultValue: "default course name", description: "This is a course name", name: "coursename")
-    // }
-    stages {
-        stage('Setup parameters') {
-            steps {
-                script{
-                    properties([
-                        parameters([
-                            string(
-                                defaultValue: 'default-course-name',
-                                name: 'coursename',
-                                trim: true
-                            )
-                        ])
-                    ])
-                }
-            }
-        }
+    properties([
+        parameters([string(defaultValue: 'default-coursename', name: 'coursename')])])
         stage('Welcome') {
             steps {
                echo "Hello World. Course name is ${params.coursename}."
@@ -34,8 +17,8 @@ pipeline {
                sh 'mvn clean install'
             }
         }
-        stage('Success') {
-            steps {
+        post {
+            always {
                echo "Thanks for running the job !"
             }
         }
