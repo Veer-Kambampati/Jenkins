@@ -1,14 +1,15 @@
 pipeline {
     agent any
-    properties([parameters([string(defaultValue: 'default-coursename', name: 'coursename')])])
+    parameters{string(name: 'coursename', defaultValue: 'DevOps', description: 'NA')}
+    stages{
         stage('Welcome') {
             steps {
-               echo "Hello World. Course name is ${coursename}."
+               echo "Hello World. Course name is ${params.coursename}."
             }
         }
         stage('Checkout') {
             steps {
-               checkoutstep "https://github.com/Veer-Kambampati/jenkins-git-integration.git"
+               checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Veer-Kambampati/Jenkins.git']])
             }
         }
         stage('Build') {
@@ -16,9 +17,10 @@ pipeline {
                sh 'mvn clean install'
             }
         }
-        post {
+    }
+    post {
             always {
                echo "Thanks for running the job !"
             }
-    }
+        }
 }
