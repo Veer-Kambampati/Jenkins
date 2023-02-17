@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Checkout') {
             steps {
-               checkout "https://github.com/Veer-Kambampati/jenkins-git-integration.git"
+               checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Veer-Kambampati/Jenkins.git']])
             }
         }
         stage('Build') {
