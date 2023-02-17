@@ -1,6 +1,7 @@
 pipeline {
     agent any
     parameters{string(defaultValue: 'default-coursename', name: 'coursename')}
+    stages{
         stage('Welcome') {
             steps {
                echo "Hello World. Course name is ${params.coursename}."
@@ -16,9 +17,10 @@ pipeline {
                sh 'mvn clean install'
             }
         }
-        post {
+    }
+    post {
             always {
                echo "Thanks for running the job !"
             }
-    }
+        }
 }
