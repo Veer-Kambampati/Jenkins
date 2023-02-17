@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    parameters{string(defaultValue: 'default-coursename', name: 'coursename')}
+    parameters{string(name: 'coursename', defaultValue: 'DevOps', description: 'NA')}
     stages{
         stage('Welcome') {
             steps {
@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Checkout') {
             steps {
-               checkoutstep "https://github.com/Veer-Kambampati/jenkins-git-integration.git"
+               checkout "https://github.com/Veer-Kambampati/jenkins-git-integration.git"
             }
         }
         stage('Build') {
