@@ -1,9 +1,9 @@
 pipeline {
     agent any
-    options([parameters([string(defaultValue: 'default-coursename', name: 'coursename')])])
+    parameters{string(defaultValue: 'default-coursename', name: 'coursename')}
         stage('Welcome') {
             steps {
-               echo "Hello World. Course name is ${coursename}."
+               echo "Hello World. Course name is ${params.coursename}."
             }
         }
         stage('Checkout') {
