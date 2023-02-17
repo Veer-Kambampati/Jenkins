@@ -20,6 +20,5 @@ pipeline {
             always {
                echo "Thanks for running the job !"
             }
-        }
     }
 }
