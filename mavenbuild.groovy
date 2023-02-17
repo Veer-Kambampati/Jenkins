@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Success') {
             steps {
-               sh 'mvn clean install'
+               echo "Thanks for running the job !"
             }
         }
     }
